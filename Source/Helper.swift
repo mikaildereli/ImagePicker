@@ -2,7 +2,7 @@ import UIKit
 import AVFoundation
 
 struct Helper {
-
+  
   static func rotationTransform() -> CGAffineTransform {
     switch UIDevice.current.orientation {
     case .landscapeLeft:
@@ -15,14 +15,13 @@ struct Helper {
       return CGAffineTransform.identity
     }
   }
-
+  
   static func videoOrientation() -> AVCaptureVideoOrientation {
-    switch UIDevice.current.orientation {
-    case .portrait: return .portrait
-    case .landscapeLeft: return .landscapeRight
-    case .landscapeRight: return .landscapeLeft
-    case .portraitUpsideDown: return .portraitUpsideDown
-    default: return .portrait
+    switch UIApplication.shared.statusBarOrientation {
+    case .landscapeLeft:
+      return .landscapeLeft
+    default:
+      return .landscapeRight
     }
   }
 }
